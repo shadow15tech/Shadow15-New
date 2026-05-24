@@ -1,0 +1,1535 @@
+/* =========================================
+   1. Global Variables & Reset
+========================================= */
+:root {
+    --cyan: #00E5FF;
+    --yellow-green: #D4E157;
+    --deep-blue: #0052FF;
+    --brand-gradient: linear-gradient(90deg, #0052FF 0%, #00E5FF 35%, #1DE9B6 70%, #D4E157 100%);
+    
+    --bg-light: #F8FAFC;
+    --text-dark: #0F172A;
+    --text-muted: #64748B;
+    --grid-color: rgba(100, 116, 139, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+    overflow-x: hidden;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+.text-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+/* =========================================
+   2. Preloader (Typing + Loading Line)
+========================================= */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: #FFFFFF;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.preloader-content {
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem; 
+}
+
+.preloader-brand {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: 4px;
+    display: inline-block; min-height: 4.5rem; 
+    border-right: 4px solid var(--deep-blue); 
+    padding-right: 8px;
+    animation: blinkCursor 0.7s infinite;
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: var(--deep-blue); }
+}
+
+.progress-container {
+    width: 250px; height: 4px;
+    background-color: rgba(100, 116, 139, 0.15);
+    border-radius: 10px; overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%; height: 100%;
+    background: var(--brand-gradient);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* =========================================
+   3. Advanced Corporate Tech Navigation
+========================================= */
+header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    z-index: 1000; padding: 1.5rem 5%;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+header.scrolled { padding: 1rem 2%; }
+
+header.scrolled nav {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 2.5rem;
+}
+
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1400px; margin: 0 auto;
+    transition: all 0.5s ease;
+}
+/* =========================================
+   Advanced Pure CSS Text Logo Styling
+========================================= */
+/* --- Active Navigation State --- */
+.nav-item.active {
+    color: var(--cyan); /* Highlights the text */
+}
+
+/* Locks the glowing dot in place for the active section */
+.nav-item.active::before {
+    opacity: 1; 
+    bottom: 4px;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+}
+.nav-brand {
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.brand-text-link {
+    text-decoration: none;
+    outline: none;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+.brand-text-link:hover {
+    transform: scale(1.05); /* Slight pop effect on hover */
+}
+
+.brand-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Use a bold, modern font like Montserrat or Poppins if you have it loaded */
+    font-family: 'Montserrat', 'Segoe UI', sans-serif; 
+}
+
+.brand-top-line {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* The word "SHADOW" */
+.brand-shadow-text {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    /* Cyan to subtle greenish-yellow gradient */
+    background: linear-gradient(90deg, #00E5FF 0%, #1DE9B6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* The white circular button holding the "15" */
+.brand-badge-15 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 8px;
+    /* Soft shadow to make it pop off the dark/light background */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 229, 255, 0.1);
+}
+
+/* The numbers "15" inside the badge */
+.badge-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    /* Sea Green to Yellow gradient */
+    background: linear-gradient(135deg, #1DE9B6 0%, #FFD54F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    transform: translateY(1px); 
+}
+
+/* The bottom Tagline */
+.brand-tagline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+    /* Full gradient across the tagline */
+    background: linear-gradient(90deg, #00E5FF 0%, #FFD54F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* =========================================
+   Navigation Links & CTA Button
+========================================= */
+.nav-links {
+    display: flex; gap: 2.5rem; list-style: none; align-items: center;
+}
+
+.nav-item {
+    text-decoration: none; color: var(--text-dark);
+    font-weight: 600; font-size: 0.95rem;
+    position: relative; padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item::before {
+    content: ''; position: absolute; bottom: 0px; left: 50%;
+    transform: translateX(-50%);
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--cyan); opacity: 0;
+    box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--deep-blue);
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.nav-item:hover { color: var(--deep-blue); }
+.nav-item:hover::before { opacity: 1; bottom: 4px; }
+
+/* Cyber-Glow Button */
+.nav-cta {
+    position: relative; display: inline-flex; justify-content: center; align-items: center;
+    padding: 0.75rem 2rem; background: #FFFFFF; color: var(--text-dark);
+    border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    overflow: hidden; z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+}
+
+.nav-cta::before {
+    content: ''; position: absolute; width: 150%; height: 150%;
+    background: conic-gradient(transparent, transparent, transparent, var(--deep-blue), var(--cyan), var(--yellow-green));
+    animation: rotateBorder 3s linear infinite; z-index: -2;
+}
+
+.nav-cta::after {
+    content: ''; position: absolute; inset: 2px;
+    background: #FFFFFF; border-radius: 50px; z-index: -1;
+    transition: background 0.4s ease;
+}
+
+.cta-text { z-index: 2; transition: color 0.4s ease; }
+
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 229, 255, 0.3); }
+.nav-cta:hover::after { background: var(--text-dark); }
+.nav-cta:hover .cta-text { color: #FFFFFF; }
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.mobile-cta-wrapper { display: none; }
+
+/* =========================================
+   4. Hamburger Menu & Mobile Responsiveness
+========================================= */
+.menu-toggle {
+    display: none; flex-direction: column; justify-content: space-between;
+    width: 30px; height: 21px; cursor: pointer; z-index: 1001;
+}
+
+.menu-toggle .bar {
+    height: 3px; width: 100%; background-color: var(--text-dark);
+    border-radius: 3px; transition: all 0.3s ease;
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 900px) {
+    .menu-toggle { display: flex; }
+    
+    #nav-action { display: none; } /* Hide desktop button */
+    .mobile-cta-wrapper { display: block; margin-top: 1rem; }
+    
+    header.scrolled nav { padding: 1rem 5%; border-radius: 0; border: none; }
+    
+    .nav-links {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column; justify-content: center;
+        gap: 2rem; transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        z-index: 1000;
+    }
+
+    .nav-links.active { transform: translateY(0); }
+    .nav-item { font-size: 1.5rem; }
+
+    /* Hamburger Animation to 'X' */
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    
+    /* Adjust Hero Text for Mobile */
+    .hero-section h1 { font-size: 2.5rem; }
+    .preloader-brand { font-size: 2.5rem; }
+    
+    /* Resize Pure Text Logo for Mobile */
+    .brand-shadow-text { font-size: 1.8rem; }
+    .brand-badge-15 { width: 35px; height: 35px; margin-left: 5px; }
+    .badge-num { font-size: 1.2rem; }
+    .brand-tagline { font-size: 0.65rem; margin-top: 3px; }
+}
+/* =========================================
+   5. Advanced 3D Tech Hero Section
+========================================= */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    overflow: hidden;
+    perspective: 1000px; /* Crucial for the 3D depth effect */
+}
+
+/* Interactive Canvas Background */
+#tech-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* Abstract Glowing Orbs */
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    animation: floatOrb 10s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 30vw; 
+    height: 30vw;
+    background: rgba(0, 82, 255, 0.15); /* Deep Blue */
+    top: 10%; 
+    left: 10%;
+}
+
+.orb-2 {
+    width: 25vw; 
+    height: 25vw;
+    background: rgba(0, 229, 255, 0.15); /* Cyan */
+    bottom: 10%; 
+    right: 10%;
+    animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* =========================================
+   3D Content Container
+========================================= */
+.hero-content-3d {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    transform-style: preserve-3d; /* Allows child elements to pop out in 3D */
+    transition: transform 0.1s ease-out; /* Smooth snapping for JS mouse tracking */
+}
+
+/* Tech Badge */
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin-bottom: 2rem;
+    transform: translateZ(30px); /* 3D pop effect */
+}
+
+.pulse-dot {
+    width: 8px; 
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--cyan);
+    animation: pulseDot 1s infinite alternate;
+}
+
+@keyframes pulseDot {
+    0% { opacity: 0.5; box-shadow: 0 0 5px var(--cyan); }
+    100% { opacity: 1; box-shadow: 0 0 15px var(--cyan); }
+}
+
+/* Advanced Typography */
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    transform: translateZ(50px); /* 3D pop effect */
+}
+
+.3d-text {
+    /* Adds a subtle shadow to the gradient text for depth */
+    text-shadow: 0px 10px 20px rgba(0, 82, 255, 0.2);
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--text-muted);
+    font-weight: 500;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+    transform: translateZ(20px); /* 3D pop effect */
+}
+
+/* Modern Call to Action Buttons */
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    transform: translateZ(40px); /* 3D pop effect */
+}
+
+.primary-btn {
+    background: var(--brand-gradient);
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 229, 255, 0.5);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--text-dark);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid rgba(15, 23, 42, 0.1);
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    border-color: var(--deep-blue);
+    color: var(--deep-blue);
+    background: rgba(0, 82, 255, 0.05);
+}
+
+/* =========================================
+   Floating 3D Glass Icons (Space Fillers)
+========================================= */
+.glass-icon {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    z-index: 10;
+    animation: levitate 6s ease-in-out infinite;
+}
+
+/* Independent positioning and 3D rotation for each icon */
+.icon-web {
+    top: -5%; 
+    left: -10%; 
+    color: #00E5FF; /* Cyan */
+    transform: translateZ(80px) rotate(-10deg);
+    animation-delay: 0s;
+}
+
+.icon-app {
+    top: 15%; 
+    right: -15%; 
+    color: #0052FF; /* Deep Blue */
+    transform: translateZ(120px) rotate(15deg);
+    animation-delay: 1.5s;
+}
+
+.icon-seo {
+    bottom: 5%; 
+    left: -12%; 
+    color: #D4E157; /* Yellow-Green */
+    transform: translateZ(50px) rotate(5deg);
+    animation-delay: 3s;
+}
+
+.icon-tech {
+    bottom: -10%; 
+    right: -5%; 
+    color: #1DE9B6; /* Sea Green */
+    transform: translateZ(90px) rotate(-15deg);
+    animation-delay: 4.5s;
+}
+
+/* Smooth up and down levitation */
+@keyframes levitate {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -20px; }
+}
+
+/* =========================================
+   Mobile Adjustments for Hero Section
+========================================= */
+@media (max-width: 900px) {
+    /* Adjust Hero Typography */
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+    }
+    
+    .hero-actions { 
+        flex-direction: column; 
+        gap: 1rem;
+    }
+    
+    /* Disable 3D Container Transform on Mobile for usability */
+    .hero-content-3d { 
+        transform: none !important; 
+    } 
+    
+    /* Resize and reposition icons to avoid text overlap on small screens */
+    .glass-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        transform: none !important; /* Flatten on mobile */
+    }
+    
+    .icon-web { top: -8%; left: 5%; }
+    .icon-app { top: 5%; right: 5%; }
+    .icon-seo { bottom: 20%; left: 5%; }
+    .icon-tech { bottom: -2%; right: 5%; }
+}
+
+/* =========================================
+   6. Custom Tech Cursor
+========================================= */
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, .menu-toggle { cursor: none; }
+}
+
+.cursor-dot {
+    position: fixed; width: 6px; height: 6px;
+    background-color: var(--cyan); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 10000;
+    box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--deep-blue);
+    transition: width 0.2s, height 0.2s;
+}
+
+.cursor-ring {
+    position: fixed; width: 30px; height: 30px;
+    border: 2px solid rgba(0, 229, 255, 0.5); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+/* Hover effect for the cursor when over links */
+.cursor-hover .cursor-dot { width: 10px; height: 10px; background-color: var(--yellow-green); }
+.cursor-hover .cursor-ring { width: 50px; height: 50px; border-color: var(--yellow-green); background: rgba(212, 225, 87, 0.1); }
+
+/* Hide custom cursor on mobile */
+@media (max-width: 900px) {
+    .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* =========================================
+   7. Page Cover "Curtain" Scroll Effect
+========================================= */
+/* This makes the hero stick in place */
+.hero-section {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* This section slides over the hero */
+.services-cover-section {
+    position: relative;
+    z-index: 2;
+    background-color: #FFFFFF; /* Must be solid to cover the hero */
+    min-height: 100vh;
+    padding: 6rem 5%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.1); /* Casts a shadow down onto the hero */
+    background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* =========================================
+   9. About Us Section (Bento Grid)
+========================================= */
+.about-section {
+    position: relative;
+    z-index: 2; /* Keeps it above the hero */
+    background-color: #FFFFFF;
+    padding: 8rem 5%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    /* Optional: Adds a subtle line above the section */
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.05);
+}
+
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Left Content Styling */
+.about-text {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.founder-signature {
+    margin-top: 3rem;
+    padding-left: 1.5rem;
+    border-left: 4px solid var(--cyan);
+}
+
+.sign-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+}
+
+.sign-title {
+    font-size: 0.95rem;
+    color: var(--deep-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Right Bento Grid Styling */
+.about-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.bento-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 82, 255, 0.1);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1);
+}
+
+.bento-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bento-card h3 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.bento-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Special Dark Panel */
+.dark-panel {
+    background: var(--text-dark);
+    color: #FFFFFF;
+    border: none;
+}
+
+.dark-panel h3 { color: #FFFFFF; font-size: 1.8rem; margin-top: 1rem; }
+.dark-panel p { color: #94A3B8; }
+
+.glow-line-bottom {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 4px;
+    background: var(--brand-gradient);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .about-container { grid-template-columns: 1fr; gap: 3rem; }
+    .about-section { padding: 5rem 5%; }
+}
+
+@media (max-width: 600px) {
+    .about-bento-grid { grid-template-columns: 1fr; }
+    .bento-card h3 { font-size: 2rem; }
+}
+/* =========================================
+   8. Advanced Services Grid & Cards
+========================================= */
+.section-header {
+    text-align: center; 
+    max-width: 700px; 
+    margin: 0 auto 4rem auto;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); 
+    font-weight: 900;
+    color: var(--text-dark); 
+    margin-bottom: 1rem;
+}
+
+.section-desc {
+    font-size: 1.1rem; 
+    color: var(--text-muted); 
+    line-height: 1.6;
+}
+
+.services-grid {
+    display: grid;
+    /* Reduced base width from 320px to 280px for better baseline scaling */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(0, 82, 255, 0.08);
+    border-radius: 24px; 
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative; 
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* The Animated Glowing Border */
+.service-card::before {
+    content: ''; 
+    position: absolute; 
+    inset: 0;
+    border-radius: 24px; 
+    padding: 2px;
+    background: var(--brand-gradient);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; 
+    mask-composite: exclude;
+    opacity: 0; 
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+/* Subtle background gradient shift on hover */
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.05), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+/* Hover Physics (Disabled on mobile to prevent sticky touch issues) */
+@media (hover: hover) {
+    .service-card:hover { 
+        transform: translateY(-12px); 
+        box-shadow: 0 25px 50px rgba(0, 82, 255, 0.1); 
+        background: rgba(255, 255, 255, 0.9);
+    }
+    .service-card:hover::before,
+    .service-card:hover::after { 
+        opacity: 1; 
+    }
+    .service-card:hover .card-icon {
+        transform: scale(1.1) rotate(-5deg);
+        filter: drop-shadow(0 5px 15px rgba(0, 229, 255, 0.4));
+    }
+    .service-card:hover h3 {
+        color: var(--deep-blue);
+    }
+}
+
+.card-icon {
+    font-size: 2.5rem; 
+    margin-bottom: 1.5rem; 
+    display: inline-block;
+    background: linear-gradient(135deg, var(--deep-blue) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.service-card h3 {
+    font-size: 1.4rem; 
+    font-weight: 800; 
+    color: var(--text-dark); 
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.service-card p {
+    color: var(--text-muted); 
+    line-height: 1.7; 
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Scroll Reveal Animations */
+.reveal-up {
+    opacity: 0; 
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-up.active { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* =========================================
+   Mobile Overrides for Services
+========================================= */
+@media (max-width: 900px) {
+    .services-cover-section {
+        padding: 4rem 5%;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+
+    .services-grid {
+        /* Forces exactly 1 column on mobile to fix the breaking UI */
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        padding: 2rem 1.5rem; /* Slightly tighter padding for small screens */
+    }
+
+    .card-icon {
+        font-size: 2rem; /* Scale down icon slightly */
+        margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.25rem; /* Scale down header slightly */
+    }
+}
+/* =========================================
+   11. Advanced Tech Team / Leadership Section 
+========================================= */
+.team-section {
+    position: relative;
+    padding: 10rem 5% 8rem 5%; /* Increased top padding for dramatic entrance */
+    background-color: var(--bg-light); /* Or use var(--text-dark) if you want it to blend into the footer */
+    overflow: hidden;
+    perspective: 1200px;
+    z-index: 2;
+}
+
+/* --- 3D Robotic / Cybernetic Background (Kept intact) --- */
+.cyber-bg-elements { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; }
+.cyber-grid { position: absolute; bottom: -20%; left: -20%; width: 140%; height: 60%; background-image: linear-gradient(rgba(0, 229, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.2) 1px, transparent 1px); background-size: 50px 50px; transform: rotateX(75deg); transform-origin: center bottom; animation: gridMove 15s linear infinite; mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent); }
+@keyframes gridMove { 0% { transform: rotateX(75deg) translateY(0); } 100% { transform: rotateX(75deg) translateY(50px); } }
+.cyber-ring { position: absolute; border-radius: 50%; border: 2px dashed rgba(0, 82, 255, 0.3); transform-style: preserve-3d; }
+.ring-1 { width: 600px; height: 600px; top: -100px; left: -150px; animation: rotateRing 20s linear infinite; }
+.ring-2 { width: 400px; height: 400px; bottom: -50px; right: -100px; border-color: rgba(0, 229, 255, 0.2); animation: rotateRing 15s linear infinite reverse; }
+@keyframes rotateRing { 0% { transform: rotateX(60deg) rotateY(20deg) rotateZ(0deg); } 100% { transform: rotateX(60deg) rotateY(20deg) rotateZ(360deg); } }
+.cyber-node { position: absolute; width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 20px 5px rgba(0, 229, 255, 0.6); }
+.node-1 { top: 20%; right: 15%; animation: floatNode 6s ease-in-out infinite; }
+.node-2 { bottom: 30%; left: 10%; animation: floatNode 8s ease-in-out infinite reverse; background: var(--yellow-green); box-shadow: 0 0 20px 5px rgba(212, 225, 87, 0.6); }
+@keyframes floatNode { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; } 50% { transform: translateY(-30px) scale(1.5); opacity: 1; } }
+
+/* --- HUD-Style Massive Team Cards --- */
+.team-grid {
+    display: grid;
+    /* Increased min-width from 300px to 380px for massive, high-impact cards */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.team-card {
+    /* Sleek, dark tech-plate design */
+    background: rgba(15, 23, 42, 0.85); 
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem; /* Tighter padding to maximize image space */
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cybernetic Corner HUD Accents */
+.team-card::before, .team-card::after {
+    content: ''; position: absolute; width: 40px; height: 40px;
+    transition: all 0.6s ease; pointer-events: none; z-index: 10;
+}
+.team-card::before { top: 0; left: 0; border-top: 3px solid var(--cyan); border-left: 3px solid var(--cyan); border-top-left-radius: 20px; }
+.team-card::after { bottom: 0; right: 0; border-bottom: 3px solid var(--cyan); border-right: 3px solid var(--cyan); border-bottom-right-radius: 20px; }
+
+.team-card:hover {
+    transform: translateY(-15px);
+    border-color: rgba(0, 229, 255, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 229, 255, 0.15);
+}
+
+/* When hovered, the corner accents scan across the whole card */
+.team-card:hover::before, .team-card:hover::after {
+    width: 100%; height: 100%; opacity: 0.1;
+}
+
+/* Massive Profile Image */
+.team-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Massive portrait height */
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-image-wrapper img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    /* Cinematic color grading: slightly desaturated until hovered */
+    filter: grayscale(40%) contrast(1.1);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+}
+
+.team-card:hover .team-image-wrapper img {
+    transform: scale(1.1); /* Slow dramatic zoom */
+    filter: grayscale(0%) contrast(1.2); /* Colors snap to life */
+}
+
+/* The Darkening Overlay (Repurposed from image-glow) */
+.image-glow {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 1) 0%, transparent 60%);
+    opacity: 0.7;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+/* Overdrives the dark overlay on hover so the text pops perfectly */
+.team-card:hover .image-glow {
+    background: rgba(15, 23, 42, 0.6);
+    opacity: 1;
+    backdrop-filter: blur(3px);
+}
+
+/* --- The Magic: Designation Text Hovering OVER the Photo --- */
+.team-content {
+    position: relative;
+    z-index: 5;
+}
+
+.team-role {
+    position: absolute;
+    /* Magic numbers: Pulls the text up exactly into the middle of the 400px image */
+    top: -250px; 
+    left: 50%;
+    transform: translate(-50%, 30px); /* Starts slightly lower */
+    width: 85%;
+    background: var(--brand-gradient);
+    color: #0F172A;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0; /* Hidden by default */
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Slides up and snaps into existence on hover */
+.team-card:hover .team-role {
+    opacity: 1;
+    transform: translate(-50%, 0); 
+}
+
+/* Text & Bio Styling */
+.team-content h3 { 
+    font-size: 1.8rem; 
+    font-weight: 900; 
+    color: #FFFFFF; 
+    margin-bottom: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+.team-bio { 
+    color: #94A3B8; 
+    line-height: 1.7; 
+    font-size: 1rem; 
+    margin-bottom: 1.5rem; 
+}
+
+/* Social Links */
+.team-socials { display: flex; justify-content: center; gap: 1.2rem; }
+.team-socials a {
+    display: flex; justify-content: center; align-items: center;
+    width: 45px; height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--cyan);
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+}
+.team-socials a:hover {
+    background: var(--cyan);
+    color: #0F172A;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3);
+}
+
+/* Mobile Overrides */
+@media (max-width: 900px) {
+    .team-section { padding: 6rem 5% 4rem 5%; }
+    .cyber-ring { display: none; }
+    
+    .team-grid {
+        grid-template-columns: 1fr; /* Forces 1 column */
+    }
+    
+    /* Shrink the massive image slightly for phones */
+    .team-image-wrapper { height: 320px; }
+    
+    /* Adjust hover badge position for smaller image */
+    .team-role { top: -200px; font-size: 0.9rem; }
+}
+
+
+
+/* =========================================
+   12. Digital Arsenal & Impact Section (3D Tech)
+========================================= */
+.impact-section {
+    position: relative;
+    padding: 8rem 5%;
+    background-color: #0A0F1A; /* Extremely dark, sleek navy/black base */
+    overflow: hidden;
+    z-index: 3; /* Above previous sections */
+    border-top: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+/* --- Robotic Matrix Background --- */
+.matrix-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    perspective: 1000px;
+}
+
+/* 3D Moving Perspective Grid */
+.matrix-bg::before {
+    content: '';
+    position: absolute;
+    width: 200%; height: 200%;
+    bottom: -50%; left: -50%;
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(80deg) translateZ(-100px);
+    animation: roboticGrid 20s linear infinite;
+    mask-image: radial-gradient(circle at center, black 10%, transparent 60%);
+    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 60%);
+}
+
+@keyframes roboticGrid {
+    0% { transform: rotateX(80deg) translateZ(-100px) translateY(0); }
+    100% { transform: rotateX(80deg) translateZ(-100px) translateY(120px); }
+}
+
+/* Robotic Laser Scan Line */
+.matrix-bg::after {
+    content: '';
+    position: absolute;
+    top: -10%; left: 0; width: 100%; height: 2px;
+    background: var(--cyan);
+    box-shadow: 0 0 20px 5px rgba(0, 229, 255, 0.4);
+    animation: laserScan 6s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+@keyframes laserScan {
+    0% { top: -10%; opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { top: 110%; opacity: 0; }
+}
+
+/* --- Layout Container --- */
+.impact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* =========================================
+   Left: 3D Holographic Tech Orbit
+========================================= */
+.tech-orbit-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* The Core Logo */
+.orbit-center {
+    position: absolute;
+    width: 100px; height: 100px;
+    z-index: 10;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+    animation: corePulse 2s infinite alternate;
+}
+
+.core-logo { width: 60%; height: auto; }
+
+@keyframes corePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
+    100% { transform: scale(1.05); box-shadow: 0 0 50px rgba(0, 229, 255, 0.6); }
+}
+
+/* 3D Rings */
+.orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    transform-style: preserve-3d;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* Tilt the entire orbit system for a 3D view */
+.inner-ring {
+    width: 250px; height: 250px;
+    transform: rotateX(65deg) rotateY(-10deg);
+    animation: spinRingRight 15s linear infinite;
+    border-top: 2px solid var(--cyan); /* Makes it look like a scanning HUD */
+}
+
+.outer-ring {
+    width: 450px; height: 450px;
+    transform: rotateX(65deg) rotateY(10deg);
+    animation: spinRingLeft 25s linear infinite;
+    border-bottom: 2px dashed var(--yellow-green);
+}
+
+@keyframes spinRingRight { 100% { transform: rotateX(65deg) rotateY(-10deg) rotateZ(360deg); } }
+@keyframes spinRingLeft { 100% { transform: rotateX(65deg) rotateY(10deg) rotateZ(-360deg); } }
+
+/* Floating Tech Icons on the Rings */
+.tech-satellite {
+    position: absolute;
+    width: 50px; height: 50px;
+    background: rgba(10, 15, 26, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 229, 255, 0.2);
+    /* Magic calculation to place them perfectly around the circle using HTML angle variables */
+    transform: rotate(var(--angle)) translateY(-125px) rotate(calc(var(--angle) * -1)) rotateX(-65deg);
+}
+
+/* Override outer ring radius */
+.outer-ring .tech-satellite {
+    transform: rotate(var(--angle)) translateY(-225px) rotate(calc(var(--angle) * -1)) rotateX(-65deg);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    width: auto; padding: 0.5rem 1rem;
+    color: var(--cyan);
+}
+
+/* =========================================
+   Right: Data Terminal (Projects & Trust)
+========================================= */
+.data-terminal {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.terminal-heading {
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 10px;
+}
+.terminal-heading::before {
+    content: ''; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%;
+    box-shadow: 0 0 10px var(--cyan);
+}
+/* Logs - Prepared for JS Boot-up */
+.project-logs { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.log-entry {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border-left: 2px solid transparent;
+    
+    /* Pre-Boot State */
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Post-Boot State (Triggered by JS) */
+.log-entry.booted {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.log-entry:hover { 
+    background: rgba(255, 255, 255, 0.05); 
+    border-left-color: var(--cyan); 
+    transform: translateX(10px); 
+}
+.log-status { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; }
+.log-status.success { background: #1DE9B6; box-shadow: 0 0 15px #1DE9B6; }
+.log-status.in-progress { background: #D4E157; box-shadow: 0 0 15px #D4E157; animation: blinkCursor 1.5s infinite; }
+
+.log-details h4 { color: #FFFFFF; font-size: 1.1rem; margin-bottom: 0.3rem; }
+.log-details p { color: #94A3B8; font-size: 0.9rem; font-family: monospace; }
+
+/* Trust Metrics Grid */
+.trust-metrics { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.trust-badge {
+    display: flex; align-items: center; gap: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 1.5rem; border-radius: 50px;
+    color: #E2E8F0; font-size: 0.95rem; font-weight: 600;
+    transition: all 0.3s ease;
+}
+.trust-badge i { color: var(--cyan); font-size: 1.2rem; }
+.trust-badge:hover { background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.3); transform: scale(1.02); }
+
+/* Mobile Overrides */
+@media (max-width: 1024px) {
+    .impact-container { grid-template-columns: 1fr; gap: 5rem; }
+    .tech-orbit-wrapper { height: 400px; transform: scale(0.8); }
+    .data-terminal { padding: 2rem 1.5rem; }
+}
+
+
+
+/* =========================================
+   13. Cyber Terminal Connect & Footer
+========================================= */
+.hyper-connect-section {
+    position: relative;
+    background-color: #050B14; /* Deepest Cyber Black */
+    padding: 8rem 5% 0 5%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    overflow: hidden;
+    z-index: 4;
+    border-top: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+/* --- Animated Quantum Background --- */
+.quantum-bg {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+}
+
+.energy-orb {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4;
+    animation: orbFloat 15s infinite alternate ease-in-out;
+}
+.orb-alpha { width: 40vw; height: 40vw; background: rgba(0, 82, 255, 0.2); top: -10%; left: -10%; }
+.orb-beta { width: 30vw; height: 30vw; background: rgba(0, 229, 255, 0.15); bottom: 10%; right: -5%; animation-delay: -5s; }
+
+@keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.2); }
+}
+
+/* Sweeping Radar Scan Line */
+.scan-line {
+    position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.8), transparent);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    animation: radarSweep 8s linear infinite;
+    opacity: 0.3;
+}
+@keyframes radarSweep { 0% { top: -10%; } 100% { top: 110%; } }
+
+/* Digital Noise / CRT Overlay */
+.digital-noise-overlay {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, 0.03) 2px, rgba(0, 229, 255, 0.03) 4px);
+    z-index: 1; pointer-events: none;
+}
+
+/* --- Layout --- */
+.connect-container {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    max-width: 1400px; margin: 0 auto; padding-bottom: 6rem;
+    position: relative; z-index: 5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Left Info Section --- */
+.system-status {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(29, 233, 182, 0.1); border: 1px solid rgba(29, 233, 182, 0.3);
+    padding: 0.5rem 1.2rem; border-radius: 50px;
+    color: #1DE9B6; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 2rem;
+}
+.status-dot { width: 8px; height: 8px; background: #1DE9B6; border-radius: 50%; animation: pulseStatus 1.5s infinite alternate; }
+@keyframes pulseStatus { 0% { box-shadow: 0 0 5px #1DE9B6; opacity: 0.5; } 100% { box-shadow: 0 0 15px #1DE9B6; opacity: 1; } }
+
+.text-light { color: #FFFFFF; }
+.text-light-muted { color: #94A3B8; font-size: 1.15rem; line-height: 1.7; margin-bottom: 3rem; }
+
+/* 3D Contact Cubes */
+.contact-details-grid { display: grid; gap: 1.5rem; margin-bottom: 3rem; }
+.contact-item-3d {
+    display: flex; align-items: center; gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.02); padding: 1rem 1.5rem;
+    border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+.contact-item-3d:hover { background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.3); transform: translateX(10px); }
+
+.icon-cube {
+    width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.2), rgba(0, 229, 255, 0.2));
+    border: 1px solid var(--cyan); border-radius: 12px; color: var(--cyan); font-size: 1.2rem;
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.2);
+}
+.item-text { display: flex; flex-direction: column; gap: 0.3rem; }
+.item-text .label { font-size: 0.85rem; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.item-text .value { font-size: 1.1rem; color: #F8FAFC; font-weight: 500; }
+
+/* Engagement Model Pro */
+.engagement-model-pro {
+    display: flex; gap: 1.5rem; background: rgba(15, 23, 42, 0.6);
+    border-left: 4px solid var(--yellow-green); padding: 1.5rem; border-radius: 12px;
+}
+.model-icon { font-size: 1.8rem; color: var(--yellow-green); }
+.model-content h4 { color: #FFFFFF; margin-bottom: 0.5rem; font-size: 1.1rem; }
+.model-content p { color: #94A3B8; font-size: 0.95rem; line-height: 1.6; }
+
+/* --- Right Cyber HUD Form --- */
+.cyber-form-container {
+    position: relative; padding: 3rem; background: rgba(10, 15, 26, 0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 229, 255, 0.1); border-radius: 4px; /* Sharp corners for HUD look */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* HUD Corner Brackets */
+.hud-bracket { position: absolute; width: 30px; height: 30px; pointer-events: none; transition: all 0.3s ease; }
+.top-left { top: -2px; left: -2px; border-top: 3px solid var(--cyan); border-left: 3px solid var(--cyan); }
+.top-right { top: -2px; right: -2px; border-top: 3px solid var(--cyan); border-right: 3px solid var(--cyan); }
+.bottom-left { bottom: -2px; left: -2px; border-bottom: 3px solid var(--cyan); border-left: 3px solid var(--cyan); }
+.bottom-right { bottom: -2px; right: -2px; border-bottom: 3px solid var(--cyan); border-right: 3px solid var(--cyan); }
+
+.cyber-form-container:hover .hud-bracket { width: 40px; height: 40px; }
+
+.form-header h3 { color: #FFFFFF; font-size: 1.6rem; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 10px; }
+.form-header i { color: var(--cyan); }
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.input-group { position: relative; margin-bottom: 2.5rem; }
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.2rem; color: #FFFFFF; font-size: 1rem; border-radius: 8px; outline: none; transition: all 0.3s ease;
+}
+
+/* Advanced Floating Labels */
+.input-group label {
+    position: absolute; top: 1rem; left: 1.2rem; color: #64748B; pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.input-group input:focus ~ label, .input-group textarea:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label, .input-group textarea:not(:placeholder-shown) ~ label {
+    top: -10px; left: 10px; font-size: 0.8rem; background: #0A0F1A; padding: 0 5px; color: var(--cyan); font-weight: 600;
+}
+
+/* Glowing Input Highlight */
+.input-highlight {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 0; height: 2px; background: var(--cyan); transition: width 0.4s ease;
+}
+.input-group input:focus ~ .input-highlight, .input-group textarea:focus ~ .input-highlight, .input-group select:focus ~ .input-highlight {
+    width: 100%; box-shadow: 0 0 10px var(--cyan);
+}
+
+.input-group select { color: #94A3B8; cursor: pointer; appearance: none; }
+.input-group select option { background: #0A0F1A; color: #FFFFFF; }
+
+.cyber-submit-btn {
+    width: 100%; background: var(--brand-gradient); border: none; padding: 1.2rem;
+    color: #0F172A; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;
+    cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 12px;
+    border-radius: 8px; transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.cyber-submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 229, 255, 0.3); color: #FFFFFF; }
+.cyber-submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-20deg); transition: 0.5s; }
+.cyber-submit-btn:hover::before { left: 150%; }
+
+/* --- Footer Pro --- */
+.site-footer-pro { padding: 4rem 0 2rem 0; position: relative; z-index: 5; }
+.footer-content-pro { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto 3rem auto; }
+.footer-brand { font-size: 2rem; font-weight: 900; color: #FFFFFF; letter-spacing: 3px; line-height: 1; }
+.brand-tagline { color: #64748B; font-size: 0.95rem; margin-top: 0.5rem; letter-spacing: 1px; text-transform: uppercase; }
+
+.social-links-pro { display: flex; gap: 1.5rem; }
+.social-node {
+    width: 45px; height: 45px; display: flex; justify-content: center; align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #94A3B8; font-size: 1.2rem;
+    transition: all 0.3s ease; background: rgba(255, 255, 255, 0.02);
+}
+.social-node:hover { background: var(--cyan); color: #0F172A; border-color: var(--cyan); transform: translateY(-5px) rotate(10deg); box-shadow: 0 10px 20px rgba(0, 229, 255, 0.2); }
+
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; max-width: 1400px; margin: 0 auto; }
+.copyright { color: #475569; font-size: 0.9rem; font-family: monospace; }
+
+/* Mobile Overrides */
+@media (max-width: 1024px) {
+    .connect-container { grid-template-columns: 1fr; gap: 4rem; padding-bottom: 4rem; }
+    .input-row { grid-template-columns: 1fr; gap: 0; }
+    .cyber-form-container { padding: 2rem 1.5rem; }
+    .footer-content-pro { flex-direction: column; gap: 2rem; text-align: center; }
+}
