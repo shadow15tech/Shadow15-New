@@ -483,3 +483,220 @@ window.addEventListener('load', () => {
         terminalObserver.observe(dataTerminal);
     }
     
+
+
+/* =========================================
+       17. Interactive 3D Card Tilt (Services Ecosystem)
+    ========================================= */
+    const tiltCards = document.querySelectorAll('.overlap-card, .bento-card');
+
+    // Only apply the 3D mouse tracking on devices that use a mouse (not phones/touchscreens)
+    if (window.matchMedia("(hover: hover)").matches) {
+        tiltCards.forEach(card => {
+            
+            card.addEventListener('mousemove', (e) => {
+                // Get the dimensions and position of the card
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // Mouse X relative to card
+                const y = e.clientY - rect.top;  // Mouse Y relative to card
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate rotation (Multiplier defines intensity. 15 is a premium, smooth tilt)
+                const rotateX = ((y - centerY) / centerY) * -15; 
+                const rotateY = ((x - centerX) / centerX) * 15;
+                
+                // Remove transition so it tracks instantly
+                card.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+                
+                // Apply the 3D transform
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                // Optional: Move the glow to follow the mouse on Bento cards
+                const glow = card.querySelector('.bento-glow');
+                if (glow) {
+                    glow.style.top = `${y}px`;
+                    glow.style.left = `${x}px`;
+                    glow.style.transform = 'translate(-50%, -50%) scale(2) translateZ(-1px)';
+                }
+            });
+
+            // Reset the card smoothly when the mouse leaves
+            card.addEventListener('mouseleave', () => {
+                card.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                
+                const glow = card.querySelector('.bento-glow');
+                if (glow) {
+                    glow.style.top = `-50%`;
+                    glow.style.left = `150%`; // Reset it out of frame
+                }
+            });
+            
+            // Set initial transition
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+            });
+        });
+    }
+    
+
+    /* =========================================
+   17. 3D Card Tilt & Counters (BULLETPROOF FIX)
+========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Interactive 3D Card Tilt ---
+    const tiltCards = document.querySelectorAll('.overlap-card, .bento-card');
+
+    // Safety Check: Only run if cards exist on this specific page AND user has a mouse
+    if (tiltCards.length > 0 && window.matchMedia("(hover: hover)").matches) {
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -15; 
+                const rotateY = ((x - centerX) / centerX) * 15;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                const glow = card.querySelector('.bento-glow');
+                if (glow) {
+                    glow.style.top = `${y}px`;
+                    glow.style.left = `${x}px`;
+                    glow.style.transform = 'translate(-50%, -50%) scale(2) translateZ(-1px)';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                const glow = card.querySelector('.bento-glow');
+                if (glow) {
+                    glow.style.top = `-50%`;
+                    glow.style.left = `150%`; 
+                }
+            });
+        });
+    }
+
+    // --- 2. Animated Number Counters ---
+    const impactSection = document.querySelector('.impact-counters-grid');
+    const counters = document.querySelectorAll('.count-up');
+
+    // Safety Check: Only run if the impact section actually exists on this page
+    if (impactSection && counters.length > 0) {
+        let hasCounted = false;
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasCounted) {
+                    hasCounted = true;
+                    
+                    counters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        const isDecimal = counter.classList.contains('decimal');
+                        const duration = 2000; 
+                        const incrementTime = 20; 
+                        const totalSteps = duration / incrementTime;
+                        const stepValue = target / totalSteps;
+                        let current = 0;
+
+                        const updateCounter = setInterval(() => {
+                            current += stepValue;
+                            
+                            if (current >= target) {
+                                counter.innerText = isDecimal ? target.toFixed(1) : Math.ceil(target);
+                                clearInterval(updateCounter);
+                            } else {
+                                counter.innerText = isDecimal ? current.toFixed(1) : Math.ceil(current);
+                            }
+                        }, incrementTime);
+                    });
+                    
+                    observer.unobserve(impactSection); 
+                }
+            });
+        }, {
+            threshold: 0.5 
+        });
+
+        counterObserver.observe(impactSection);
+    }
+});
+
+/* =========================================
+       19. Portfolio: 3D Parallax & Magnetic Buttons
+    ========================================= */
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- 1. Cinematic 3D Image Parallax ---
+        const projectVisuals = document.querySelectorAll('.project-visual');
+
+        // Safety Check: Only run if elements exist and the user has a mouse
+        if (projectVisuals.length > 0 && window.matchMedia("(hover: hover)").matches) {
+            projectVisuals.forEach(visual => {
+                const inner = visual.querySelector('.visual-inner');
+                const badge = visual.querySelector('.project-category-badge');
+
+                visual.addEventListener('mousemove', (e) => {
+                    const rect = visual.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Creates a heavy, smooth cinematic tilt
+                    const rotateX = ((y - centerY) / centerY) * -8; 
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    
+                    inner.style.transition = 'none'; // Instant tracking while moving
+                    inner.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+                    
+                    if (badge) {
+                        badge.style.transition = 'none';
+                        // Parallax effect: The badge moves slightly in the direction of the mouse to float off the screen
+                        badge.style.transform = `translateZ(60px) translateX(${x/25}px) translateY(${y/25}px)`;
+                    }
+                });
+
+                // Smoothly snap back into place when the mouse leaves
+                visual.addEventListener('mouseleave', () => {
+                    inner.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    inner.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    
+                    if (badge) {
+                        badge.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        badge.style.transform = 'translateZ(0) translateX(0) translateY(0)';
+                    }
+                });
+            });
+        }
+
+        // --- 2. Magnetic Ghost Buttons ---
+        const magneticBtns = document.querySelectorAll('.cyber-outline-btn');
+
+        if (magneticBtns.length > 0 && window.matchMedia("(hover: hover)").matches) {
+            magneticBtns.forEach(btn => {
+                
+                // Pull the button towards the cursor
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    // The '0.3' controls the magnetic pull strength. 
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+
+                // Release the magnetic pull
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        }
+    });

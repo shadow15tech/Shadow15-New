@@ -1533,3 +1533,1322 @@ nav {
     .cyber-form-container { padding: 2rem 1.5rem; }
     .footer-content-pro { flex-direction: column; gap: 2rem; text-align: center; }
 }
+
+
+
+/* =========================================
+   14. ABOUT PAGE: System Diagnostics Theme
+========================================= */
+
+.about-page-main {
+    background-color: #050B14; /* Deep cyber black to match the terminal look */
+    overflow: hidden;
+}
+
+/* --- 1. About Hero Section --- */
+.about-hero {
+    position: relative;
+    padding: 12rem 5% 8rem 5%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    z-index: 2;
+}
+
+/* 3D Animated Topographical Grid */
+.cyber-grid-bg {
+    position: absolute;
+    bottom: -30%; left: -50%; width: 200%; height: 150%;
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(1000px) rotateX(75deg);
+    animation: gridScanForward 10s linear infinite;
+    mask-image: radial-gradient(ellipse at top, rgba(0,0,0,1) 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top, rgba(0,0,0,1) 0%, transparent 70%);
+    z-index: 0;
+}
+
+@keyframes gridScanForward {
+    0% { transform: perspective(1000px) rotateX(75deg) translateY(0); }
+    100% { transform: perspective(1000px) rotateX(75deg) translateY(50px); }
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- 2. The Genesis Section --- */
+.genesis-section {
+    position: relative;
+    padding: 8rem 5%;
+    z-index: 3;
+}
+
+.genesis-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Terminal Text Box */
+.terminal-text-box {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 3px solid var(--cyan);
+    padding: 2.5rem;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 15px 15px 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    margin-top: 2rem;
+}
+
+.terminal-text-box p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+.terminal-text-box p:last-child { margin-bottom: 0; }
+
+/* 3D Holographic Cyber Core */
+.genesis-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-cube-wrapper {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.cyber-core {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(60deg) rotateY(-20deg); /* Tilts the core into 3D space */
+}
+
+/* The Spinning Energy Rings */
+.core-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+.core-ring-1 {
+    width: 100%; height: 100%;
+    margin-top: -50%; margin-left: -50%;
+    border: 2px dashed rgba(0, 229, 255, 0.5);
+    border-top: 4px solid var(--cyan);
+    animation: spinAxis1 10s linear infinite;
+    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.core-ring-2 {
+    width: 75%; height: 75%;
+    margin-top: -37.5%; margin-left: -37.5%;
+    border: 2px solid rgba(29, 233, 182, 0.3);
+    border-bottom: 4px solid var(--yellow-green);
+    animation: spinAxis2 7s linear infinite reverse;
+}
+
+.core-ring-3 {
+    width: 50%; height: 50%;
+    margin-top: -25%; margin-left: -25%;
+    border: 1px solid rgba(0, 82, 255, 0.4);
+    border-right: 4px solid var(--deep-blue);
+    animation: spinAxis3 5s linear infinite;
+}
+
+@keyframes spinAxis1 { 100% { transform: rotateZ(360deg) rotateX(15deg); } }
+@keyframes spinAxis2 { 100% { transform: rotateZ(360deg) rotateY(15deg); } }
+@keyframes spinAxis3 { 100% { transform: rotateZ(360deg) rotateX(-15deg); } }
+
+/* The Glowing Center Core */
+.core-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotateX(-60deg) rotateY(20deg); /* Counters the parent tilt to stand upright */
+    width: 60px; height: 60px;
+    background: var(--brand-gradient);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; color: #fff;
+    box-shadow: 0 0 40px 10px rgba(0, 229, 255, 0.6);
+    animation: corePulseEnergy 2s ease-in-out infinite alternate;
+}
+
+@keyframes corePulseEnergy {
+    0% { transform: translate(-50%, -50%) rotateX(-60deg) rotateY(20deg) scale(0.9); box-shadow: 0 0 20px 5px rgba(0, 229, 255, 0.4); }
+    100% { transform: translate(-50%, -50%) rotateX(-60deg) rotateY(20deg) scale(1.1); box-shadow: 0 0 50px 15px rgba(0, 229, 255, 0.8); }
+}
+
+
+/* --- 3. Core Directives (HUD Cards) --- */
+.directives-section {
+    padding: 6rem 5% 10rem 5%;
+    background: radial-gradient(ellipse at center, #0A111F 0%, #050B14 100%);
+}
+
+.directives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hud-card {
+    background: rgba(10, 15, 26, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    border-radius: 4px; /* Sharp technical corners */
+    padding: 3rem 2rem;
+    position: relative;
+    transition: all 0.4s ease;
+    text-align: left;
+}
+
+/* Cyber HUD Bracket Accents */
+.hud-corner {
+    position: absolute; width: 25px; height: 25px;
+    pointer-events: none; transition: all 0.4s ease;
+}
+.hud-corner.top-left { top: -2px; left: -2px; border-top: 3px solid var(--cyan); border-left: 3px solid var(--cyan); }
+.hud-corner.bottom-right { bottom: -2px; right: -2px; border-bottom: 3px solid var(--cyan); border-right: 3px solid var(--cyan); }
+
+.hud-card:hover {
+    transform: translateY(-10px);
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.3);
+}
+
+.hud-card:hover .hud-corner { width: 40px; height: 40px; }
+
+.hud-icon {
+    font-size: 2.5rem;
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.4));
+    transition: transform 0.4s ease;
+}
+
+.hud-card:hover .hud-icon { transform: scale(1.1) rotate(5deg); }
+
+.hud-card h3 {
+    color: #FFFFFF; font-size: 1.4rem; font-weight: 800;
+    margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+}
+
+.hud-card p {
+    color: #94A3B8; line-height: 1.7; font-size: 1rem;
+}
+
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 900px) {
+    .about-hero { padding: 8rem 5% 5rem 5%; }
+    
+    .genesis-container { grid-template-columns: 1fr; gap: 4rem; }
+    
+    .tech-cube-wrapper { width: 250px; height: 250px; margin: 0 auto; }
+    
+    .terminal-text-box { padding: 1.5rem; border-radius: 8px; border-left: 2px solid var(--cyan); }
+    
+    .directives-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+
+/* =========================================
+   18. SERVICES PAGE: Matrix & Tech Stack
+========================================= */
+
+.services-page-main {
+    background-color: #050B14;
+    overflow: hidden;
+}
+
+/* --- 1. Services Hero Section --- */
+.services-hero {
+    position: relative;
+    padding: 12rem 5% 8rem 5%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    z-index: 2;
+}
+
+/* Animated Particle Dust Background */
+.particle-network {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.05) 0%, transparent 60%);
+}
+.particle-network::before, .particle-network::after {
+    content: ''; position: absolute; inset: -50%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: driftStars 60s linear infinite;
+    opacity: 0.5;
+}
+.particle-network::after {
+    background-size: 70px 70px;
+    animation: driftStars 40s linear infinite reverse;
+    opacity: 0.3;
+}
+@keyframes driftStars { 0% { transform: rotate(0deg) translateY(0); } 100% { transform: rotate(360deg) translateY(200px); } }
+
+.services-hero-content {
+    position: relative; z-index: 2;
+    max-width: 900px; margin: 0 auto;
+}
+
+/* --- 2. Core Service Offerings (Alternating 3D Layout) --- */
+.core-services-section { padding: 8rem 5%; position: relative; z-index: 3; }
+.services-container { max-width: 1300px; margin: 0 auto; }
+
+.service-detail-card {
+    display: flex; align-items: center; gap: 5rem;
+    margin-bottom: 8rem;
+}
+.service-detail-card:last-child { margin-bottom: 0; }
+
+/* The Reverse Layout class flips the image and text */
+.service-detail-card.reverse-layout { flex-direction: row-reverse; }
+
+.service-info { flex: 1; }
+.service-info h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; line-height: 1.2; }
+.service-info p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; }
+
+/* Checklist Features */
+.service-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.service-features span {
+    display: flex; align-items: center; gap: 10px;
+    color: #E2E8F0; font-weight: 600; font-size: 0.95rem;
+}
+.service-features i { color: var(--cyan); background: rgba(0, 229, 255, 0.1); padding: 5px; border-radius: 50%; font-size: 0.8rem; }
+
+/* 3D Cyber Hexagon Visuals */
+.service-visual {
+    flex: 1; display: flex; justify-content: center; align-items: center;
+    perspective: 1200px;
+}
+
+.cyber-icon-hex {
+    width: 250px; height: 250px;
+    position: relative; transform-style: preserve-3d;
+    background: rgba(15, 23, 42, 0.6);
+    border: 2px solid rgba(0, 229, 255, 0.3);
+    border-radius: 30px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 5rem; color: #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 229, 255, 0.1);
+    animation: floatVisual 6s ease-in-out infinite;
+    transition: all 0.5s ease;
+}
+.cyber-icon-hex::before {
+    content: ''; position: absolute; inset: -15px;
+    border: 2px dashed rgba(29, 233, 182, 0.3); border-radius: 40px;
+    animation: spinSlowly 20s linear infinite;
+}
+.cyber-icon-hex i {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0, 229, 255, 0.4));
+    transform: translateZ(50px); /* 3D Pop out effect */
+}
+
+.service-detail-card:hover .cyber-icon-hex {
+    transform: rotateY(15deg) rotateX(10deg);
+    border-color: var(--cyan);
+    box-shadow: 0 30px 60px rgba(0, 229, 255, 0.2), inset 0 0 50px rgba(0, 229, 255, 0.3);
+}
+
+@keyframes floatVisual { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+@keyframes spinSlowly { 100% { transform: rotateZ(360deg); } }
+
+/* --- 3. Tech Stack Matrix (3D Glass Cards) --- */
+.tech-stack-section { padding: 6rem 5% 8rem 5%; background: radial-gradient(ellipse at bottom, #0A111F 0%, #050B14 100%); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+.stack-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem; margin-top: 4rem;
+    perspective: 1000px; /* Enables 3D for children */
+}
+
+.stack-category {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px); border-radius: 16px; padding: 2.5rem;
+    transform-style: preserve-3d; transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.stack-category:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 229, 255, 0.3);
+}
+
+.stack-category h3 { color: #fff; font-size: 1.3rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 12px; transform: translateZ(30px); }
+.stack-category h3 i { color: var(--yellow-green); }
+
+.tech-tags { display: flex; flex-wrap: wrap; gap: 1rem; transform: translateZ(20px); }
+.tech-tag {
+    background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2);
+    color: #94A3B8; padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600;
+    transition: all 0.3s ease;
+}
+.tech-category:hover .tech-tag { color: #fff; }
+.tech-tag:hover { background: var(--cyan); color: #0F172A !important; box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); transform: translateY(-3px); }
+
+/* --- 4. Deployment Protocol (Neon Timeline) --- */
+.deployment-protocol { padding: 6rem 5% 10rem 5%; }
+
+.timeline-container { position: relative; max-width: 900px; margin: 4rem auto 0 auto; padding-left: 3rem; }
+
+/* The Glowing Vertical Line */
+.timeline-line {
+    position: absolute; top: 0; left: 15px; width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--cyan), var(--yellow-green), transparent);
+    border-radius: 10px; opacity: 0.3;
+}
+
+.timeline-step { position: relative; margin-bottom: 4rem; display: flex; align-items: flex-start; }
+.timeline-step:last-child { margin-bottom: 0; }
+
+.step-dot {
+    position: absolute; left: -3rem; top: 0;
+    width: 35px; height: 35px; background: #050B14; border: 3px solid var(--cyan);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    color: #fff; font-weight: 900; font-size: 1rem; z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    transition: all 0.4s ease;
+}
+.timeline-step:hover .step-dot { background: var(--cyan); color: #050B14; transform: scale(1.2); }
+
+.step-content {
+    background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem; border-radius: 12px; transition: all 0.3s ease;
+    width: 100%;
+}
+.timeline-step:hover .step-content { background: rgba(15, 23, 42, 0.8); border-color: rgba(0, 229, 255, 0.3); transform: translateX(10px); }
+
+.step-content h4 { color: #fff; font-size: 1.4rem; margin-bottom: 0.8rem; }
+.step-content p { color: #94A3B8; line-height: 1.7; font-size: 1rem; }
+
+
+/* =========================================
+   19. Services Page: Mobile Optimizations
+========================================= */
+
+@media (max-width: 1024px) {
+    .service-detail-card, .service-detail-card.reverse-layout {
+        flex-direction: column; gap: 3rem; text-align: center;
+    }
+    .service-features { text-align: left; } /* Keep bullets left-aligned for readability */
+    .stack-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .services-hero { padding: 8rem 5% 4rem 5%; }
+    .services-hero h1.hero-title { font-size: 2.5rem; }
+    
+    .service-info h2 { font-size: 1.8rem; }
+    .cyber-icon-hex { width: 180px; height: 180px; font-size: 3.5rem; }
+    .service-features { grid-template-columns: 1fr; } /* Stack features on tiny screens */
+    
+    .timeline-container { padding-left: 2rem; }
+    .timeline-line { left: 5px; }
+    .step-dot { left: -2rem; width: 30px; height: 30px; font-size: 0.9rem; }
+    .step-content { padding: 1.5rem; }
+    .step-content h4 { font-size: 1.2rem; }
+}
+
+
+
+/* =========================================
+   20. The Shadow15 Advantage (Comparison Matrix)
+========================================= */
+
+.advantage-section {
+    padding: 8rem 5%;
+    background: radial-gradient(circle at center, #0A111F 0%, #050B14 100%);
+    position: relative;
+    z-index: 3;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comparison-grid {
+    display: grid;
+    /* The 1.1fr makes the Shadow15 card slightly wider, emphasizing superiority */
+    grid-template-columns: 1fr 1.1fr; 
+    gap: 3rem;
+    align-items: center;
+    perspective: 1200px; /* Crucial for 3D depth */
+    margin-top: 4rem;
+    max-width: 1300px;
+    margin-inline: auto;
+}
+
+/* Base Card Styling */
+.compare-card {
+    padding: 3rem;
+    border-radius: 20px;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; transform: translateZ(20px); }
+.icon-box { width: 55px; height: 55px; border-radius: 14px; display: flex; justify-content: center; align-items: center; font-size: 1.6rem; }
+.compare-card h3 { color: #FFFFFF; font-size: 1.6rem; margin-bottom: 0.4rem; font-weight: 800; letter-spacing: 0.5px; }
+.status-badge { font-size: 0.75rem; font-weight: 800; padding: 0.4rem 1rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; }
+
+.compare-list { list-style: none; margin-bottom: 3rem; transform: translateZ(10px); }
+.compare-list li { color: #94A3B8; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.05rem; font-weight: 500; }
+.compare-list i { font-size: 1.2rem; }
+
+/* -------------------------------------
+   The "Standard Build" (Negative UI)
+------------------------------------- */
+.standard-build {
+    background: rgba(20, 15, 15, 0.5); /* Slight reddish-black tint */
+    border: 1px solid rgba(255, 82, 82, 0.1);
+    /* Pushes it back in 3D space */
+    transform: translateZ(-30px);
+    opacity: 0.85;
+    filter: grayscale(30%);
+}
+
+.standard-build:hover {
+    transform: translateZ(0);
+    opacity: 1;
+    border-color: rgba(255, 82, 82, 0.3);
+    filter: grayscale(0%);
+    box-shadow: 0 10px 30px rgba(255, 82, 82, 0.05);
+}
+
+.alert-box { background: rgba(255, 82, 82, 0.1); color: #FF5252; border: 1px solid rgba(255, 82, 82, 0.3); }
+.error-badge { background: rgba(255, 82, 82, 0.1); color: #FF5252; border: 1px solid rgba(255, 82, 82, 0.3); }
+.standard-build .compare-list i { color: #FF5252; }
+
+/* -------------------------------------
+   The "Shadow15 Build" (Premium UI)
+------------------------------------- */
+.shadow-build {
+    background: rgba(10, 15, 26, 0.85);
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--cyan);
+    /* Pulls it forward and scales it up to assert dominance */
+    transform: translateZ(30px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    z-index: 2;
+}
+
+.shadow-build:hover {
+    transform: translateZ(50px) scale(1.05);
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.8);
+}
+
+.success-box { background: rgba(29, 233, 182, 0.1); color: var(--cyan); border: 1px solid var(--cyan); box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
+.success-badge { background: rgba(29, 233, 182, 0.1); color: var(--cyan); border: 1px solid var(--cyan); }
+.shadow-build .compare-list i { color: var(--cyan); filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6)); }
+
+/* HUD Corner Fixes for the Shadow card */
+.shadow-build .hud-corner { top: -2px; width: 30px; height: 30px; }
+.shadow-build:hover .hud-corner { width: 50px; height: 50px; }
+
+
+/* -------------------------------------
+   Animated Latency / Metric Bars
+------------------------------------- */
+.metric-visualizer {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(20px);
+}
+
+.metric-label { display: flex; justify-content: space-between; margin-bottom: 1rem; color: #E2E8F0; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.bad-text { color: #FF5252; text-shadow: 0 0 10px rgba(255, 82, 82, 0.4); }
+.good-text { color: var(--cyan); text-shadow: 0 0 10px rgba(0, 229, 255, 0.4); }
+
+.bar-track { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 10px; width: 0; } /* Starts at 0 for animation */
+
+/* Custom Animations that trigger to fill the bars */
+.bad-fill { background: linear-gradient(90deg, #FF5252, #FF8A80); box-shadow: 0 0 10px rgba(255, 82, 82, 0.5); animation: fillBadBar 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards; }
+.good-fill { background: linear-gradient(90deg, var(--cyan), var(--yellow-green)); box-shadow: 0 0 15px var(--cyan); animation: fillGoodBar 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards; }
+
+@keyframes fillBadBar { to { width: 85%; } }
+@keyframes fillGoodBar { to { width: 10%; } }
+
+
+/* -------------------------------------
+   Live Telemetry Ticker Bottom Bar
+------------------------------------- */
+.telemetry-ticker-wrapper {
+    margin: 6rem auto 0 auto;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.ticker-label {
+    flex-shrink: 0;
+    background: var(--brand-gradient);
+    color: #0F172A;
+    font-weight: 900;
+    font-size: 0.8rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    margin-right: 1.5rem;
+    display: flex; align-items: center; gap: 8px;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Fades the edges of the ticker text */
+.ticker-overflow {
+    flex: 1; overflow: hidden; position: relative;
+    mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+}
+
+.ticker-track {
+    display: flex; gap: 2.5rem; align-items: center; white-space: nowrap;
+    animation: tickerScroll 25s linear infinite;
+}
+
+.ticker-track span { color: #94A3B8; font-family: monospace; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; }
+.t-highlight { color: #FFFFFF; font-weight: 800; }
+.spacer { color: var(--cyan) !important; font-size: 1.2rem !important; text-shadow: 0 0 10px var(--cyan); }
+
+@keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Moves exactly half width to loop the duplicate text */
+}
+
+
+/* =========================================
+   21. Comparison & Ticker Mobile Adjustments
+========================================= */
+
+@media (max-width: 1024px) {
+    .comparison-grid { grid-template-columns: 1fr; gap: 4rem; perspective: none; }
+    
+    /* Disable aggressive 3D on tablets/phones to prevent breaking out of screen */
+    .standard-build { transform: none; opacity: 1; filter: grayscale(0%); }
+    .standard-build:hover { transform: translateY(-5px); }
+    
+    .shadow-build { transform: none; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+    .shadow-build:hover { transform: translateY(-5px); }
+}
+
+@media (max-width: 600px) {
+    .compare-card { padding: 2rem 1.5rem; }
+    .card-header { flex-direction: column; text-align: center; gap: 1rem; }
+    .compare-list li { font-size: 0.95rem; align-items: flex-start; }
+    .compare-list i { margin-top: 3px; }
+    
+    .telemetry-ticker-wrapper { flex-direction: column; padding: 0; background: transparent; border: none; box-shadow: none; }
+    .ticker-label { width: 100%; justify-content: center; margin-right: 0; margin-bottom: 1rem; border-radius: 8px; }
+    .ticker-overflow { width: 100%; background: rgba(15, 23, 42, 0.6); padding: 0.8rem 0; border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 8px; }
+}
+
+
+
+
+
+/* =========================================
+   20. 3D SERVICES ECOSYSTEM (PC & Mobile Perfected)
+========================================= */
+
+/* 1. Global Page Lock (Prevents Mobile Horizontal Scrolling) */
+.services-page-main {
+    background-color: #050B14;
+    width: 100%;
+    overflow-x: hidden; /* Strictly prevents 3D elements from pushing off-screen */
+    position: relative;
+    z-index: 1; 
+}
+
+/* --- Ensure Header & Hamburger Stay on Top --- */
+#main-header, .nav-links.active {
+    z-index: 9999 !important; /* Forces the mobile menu OVER the 3D cards */
+}
+
+/* --- 2. Ecosystem Hero --- */
+.services-hero {
+    position: relative; padding: 12rem 5% 8rem 5%;
+    text-align: center; border-bottom: 1px solid rgba(0, 229, 255, 0.1); z-index: 2;
+}
+
+.sector-label {
+    color: var(--cyan); font-weight: 900; text-transform: uppercase;
+    letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 1rem;
+}
+
+/* =========================================
+   3. 3D OVERLAPPING CLUSTER (Sectors 1 & 2)
+========================================= */
+.service-cluster { padding: 10rem 5%; position: relative; z-index: 3; }
+.cluster-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; position: relative; perspective: 1500px; }
+.reverse-cluster .cluster-container { flex-direction: row-reverse; }
+
+/* The Deep Background Visual */
+.cluster-visual-bg {
+    flex: 1; height: 600px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(5, 11, 20, 0.9));
+    border: 1px solid rgba(0, 229, 255, 0.1); border-radius: 40px;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 0 30px 60px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.cyber-overlay { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(0, 229, 255, 0.02) 0px, rgba(0, 229, 255, 0.02) 2px, transparent 2px, transparent 10px); }
+.massive-bg-icon { font-size: 25rem; color: rgba(255, 255, 255, 0.02); transform: rotate(-15deg); transition: transform 1s ease; }
+.service-cluster:hover .massive-bg-icon { transform: rotate(0deg) scale(1.1); color: rgba(0, 229, 255, 0.05); }
+
+/* The Foreground Content */
+.cluster-content { flex: 1.2; position: relative; z-index: 5; margin-left: -8rem; pointer-events: none; }
+.reverse-cluster .cluster-content { margin-left: 0; margin-right: -8rem; }
+.cluster-header { pointer-events: auto; }
+.cluster-header h2 { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 2rem; }
+
+.overlapping-cards-wrapper { display: flex; gap: 2.5rem; perspective: 1200px; pointer-events: auto; }
+.offset-card { margin-top: 5rem; }
+
+/* --- Interactive 3D Glass Cards --- */
+.overlap-card {
+    flex: 1; padding: 3rem 2.5rem; border-radius: 24px;
+    background: rgba(10, 15, 26, 0.7);
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(0, 229, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    transform-style: preserve-3d; 
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    will-change: transform;
+}
+
+.card-icon {
+    width: 60px; height: 60px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px; display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; color: var(--cyan); margin-bottom: 1.5rem;
+    transform: translateZ(50px);
+    transition: all 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.overlap-card h3 { color: #FFFFFF; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 800; transform: translateZ(30px); }
+.overlap-card p { color: #94A3B8; line-height: 1.7; font-size: 0.95rem; transform: translateZ(20px); }
+
+.overlap-card:hover { border-color: rgba(0, 229, 255, 0.5); box-shadow: 0 40px 80px rgba(0, 229, 255, 0.15), inset 0 0 30px rgba(0, 229, 255, 0.05); }
+.overlap-card:hover .card-icon { background: var(--brand-gradient); color: #0F172A; border-color: transparent; }
+
+
+/* =========================================
+   4. 3D BENTO MATRIX (Sector 3)
+========================================= */
+.growth-engine-section { padding: 8rem 5% 10rem 5%; background: radial-gradient(ellipse at top, #0A111F 0%, #050B14 100%); border-top: 1px solid rgba(255, 255, 255, 0.05); z-index: 3; position: relative; }
+
+.bento-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1400px; margin: 4rem auto 0 auto; perspective: 1200px; }
+
+.bento-card {
+    padding: 3rem 2.5rem; border-radius: 24px;
+    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start;
+    transform-style: preserve-3d; transition: box-shadow 0.4s ease, border-color 0.4s ease; will-change: transform;
+}
+
+.bento-glow { position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%); border-radius: 50%; transition: all 0.5s ease; transform: translateZ(-1px); }
+
+.bento-card:hover { border-color: rgba(0, 229, 255, 0.3); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 229, 255, 0.1); }
+.bento-card:hover .bento-glow { transform: scale(2) translateZ(-1px); background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 70%); }
+
+.bento-card .card-icon { transform: translateZ(40px); margin-bottom: 1.5rem; }
+.bento-card h3 { color: #FFFFFF; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 800; transform: translateZ(30px); }
+.bento-card p { color: #94A3B8; line-height: 1.7; font-size: 1rem; transform: translateZ(20px); }
+
+.tall-card { grid-row: span 2; background: linear-gradient(180deg, rgba(15, 23, 42, 0.8), rgba(0, 229, 255, 0.05)); }
+.wide-card { grid-column: span 2; display: flex; flex-direction: row; align-items: center; gap: 3rem; }
+.wide-card .card-icon { margin-bottom: 0; flex-shrink: 0; width: 80px; height: 80px; font-size: 2rem; }
+
+.meta-color i { color: #0668E1; } .google-color i { color: #EA4335; }
+
+
+/* =========================================
+   5. STRICT MOBILE/TABLET COMPATIBILITY 
+========================================= */
+
+@media (max-width: 1200px) {
+    .cluster-content { margin-left: -4rem; }
+    .reverse-cluster .cluster-content { margin-right: -4rem; }
+}
+
+/* Tablet Transition (Neutralizing complex overlaps) */
+@media (max-width: 900px) {
+    .cluster-container, .reverse-cluster .cluster-container { flex-direction: column; text-align: center; perspective: none; }
+    
+    .cluster-visual-bg { width: 100%; height: 300px; margin-bottom: 2rem; }
+    .massive-bg-icon { font-size: 10rem; }
+    
+    /* Completely reset margins to ensure no horizontal overflow */
+    .cluster-content, .reverse-cluster .cluster-content { margin: 0; width: 100%; display: block; }
+    
+    /* Stack cards immediately on tablet to prevent squishing */
+    .overlapping-cards-wrapper { flex-direction: column; gap: 2rem; perspective: none; }
+    .offset-card { margin-top: 0; }
+    
+    .bento-matrix { grid-template-columns: 1fr; perspective: none; }
+    .tall-card { grid-row: span 1; }
+    .wide-card { grid-column: span 1; flex-direction: column; align-items: flex-start; gap: 1rem; text-align: left; }
+    .wide-card .card-icon { margin-bottom: 1rem; }
+    
+    /* CRITICAL FIX: Kill all 3D transforms on mobile/tablet to fix touch/scrolling issues */
+    .overlap-card, .bento-card { transform-style: flat; transform: none !important; transition: none; padding: 2.5rem 2rem; text-align: left; }
+    .card-icon, .overlap-card h3, .overlap-card p, .bento-card h3, .bento-card p { transform: none !important; }
+}
+
+/* Deep Mobile (Phones) */
+@media (max-width: 600px) {
+    .service-cluster { padding: 4rem 5%; }
+    .cluster-header h2 { font-size: 2.2rem; }
+    .overlap-card, .bento-card { padding: 2rem 1.5rem; text-align: left; }
+    .services-hero h1.hero-title { font-size: 2.5rem; }
+}
+
+
+/* =========================================
+   22. INTELLIGENCE HUB (Half-Overlap Design)
+========================================= */
+
+.knowledge-architecture-section {
+    padding: 8rem 5% 12rem 5%; /* Extra bottom padding for the cascading drop */
+    background: radial-gradient(ellipse at bottom, #0A111F 0%, #050B14 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 3;
+    overflow-x: hidden; /* Prevents overlap from causing horizontal scroll */
+}
+
+.architecture-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 5rem auto 0 auto;
+}
+
+/* --- The Overlapping Data Node Cards --- */
+.data-node-card {
+    width: 400px; /* Fixed width to control the overlap */
+    flex-shrink: 0;
+    padding: 3.5rem 2.5rem;
+    border-radius: 20px;
+    background: rgba(10, 15, 26, 0.75);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: -15px 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+/* 1st Card: Left */
+.data-node-card:nth-child(1) {
+    z-index: 3;
+}
+
+/* 2nd Card: Middle (Overlaps the 1st card) */
+.data-node-card:nth-child(2) {
+    z-index: 2;
+    margin-left: -6rem; /* Pulls it over the first card */
+    margin-top: 4rem;   /* Drops it down to create a staircase effect */
+}
+
+/* 3rd Card: Right (Overlaps the 2nd card) */
+.data-node-card:nth-child(3) {
+    z-index: 1;
+    margin-left: -6rem; /* Pulls it over the second card */
+    margin-top: 8rem;   /* Drops it further down */
+}
+
+/* Hover Physics: Brings the overlapped card to the front and slides it out */
+.data-node-card:hover {
+    z-index: 10 !important;
+    transform: translateY(-20px) translateX(-15px);
+    border-color: var(--cyan);
+    box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 229, 255, 0.15);
+    background: rgba(15, 23, 42, 0.95);
+}
+
+/* --- Card Internals --- */
+.node-header { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2rem; }
+.node-icon {
+    width: 50px; height: 50px; background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 12px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.4rem; color: var(--cyan); transition: all 0.4s ease;
+}
+.data-node-card:hover .node-icon { background: var(--cyan); color: #0F172A; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
+
+.node-header h3 { color: #FFFFFF; font-size: 1.4rem; font-weight: 800; line-height: 1.2; }
+.node-body { flex-grow: 1; margin-bottom: 2.5rem; }
+.node-body p { color: #94A3B8; line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem; }
+.node-body p:last-child { margin-bottom: 0; }
+.node-body strong { color: #E2E8F0; font-weight: 700; }
+
+.node-metric { border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.metric-value { color: var(--cyan); font-family: 'Courier New', Courier, monospace; font-size: 2rem; font-weight: 900; text-shadow: 0 0 15px rgba(0, 229, 255, 0.3); line-height: 1; }
+.metric-label { color: #64748B; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+
+
+/* =========================================
+   23. STRICT MOBILE & TABLET COMPATIBILITY 
+========================================= */
+
+@media (max-width: 1200px) {
+    /* Compress the overlap slightly for smaller laptops */
+    .data-node-card { width: 350px; }
+    .data-node-card:nth-child(2) { margin-left: -4rem; }
+    .data-node-card:nth-child(3) { margin-left: -4rem; }
+}
+
+@media (max-width: 1024px) {
+    /* TABLET: Switch from Horizontal Overlap to Vertical Overlap */
+    .architecture-grid { flex-direction: column; align-items: center; margin-top: 3rem; }
+    
+    .data-node-card { width: 100%; max-width: 500px; padding: 2.5rem 2rem; }
+    
+    .data-node-card:nth-child(1) { z-index: 3; margin-left: 0; margin-top: 0; }
+    /* Overlap them upwards vertically */
+    .data-node-card:nth-child(2) { z-index: 2; margin-left: 0; margin-top: -3rem; }
+    .data-node-card:nth-child(3) { z-index: 1; margin-left: 0; margin-top: -3rem; }
+    
+    .data-node-card:hover { transform: translateY(-10px) translateX(0); }
+}
+
+@media (max-width: 600px) {
+    /* MOBILE: Completely dismantle overlaps to ensure 100% touch readability */
+    .knowledge-architecture-section { padding: 5rem 5% 6rem 5%; }
+    
+    .architecture-grid { gap: 2rem; margin-top: 2rem; }
+    
+    .data-node-card { max-width: 100%; padding: 2rem 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+    
+    /* Reset all negative margins to zero for standard stacking */
+    .data-node-card:nth-child(2) { margin-top: 0; }
+    .data-node-card:nth-child(3) { margin-top: 0; }
+    
+    .node-header h3 { font-size: 1.2rem; }
+    .metric-value { font-size: 1.8rem; }
+    
+    .data-node-card:hover { transform: translateY(-5px); } /* Gentle hover for mobile */
+}
+
+
+/* =========================================
+   24. PROVEN IMPACT & ROI TELEMETRY
+========================================= */
+
+.impact-telemetry-section {
+    padding: 8rem 5% 10rem 5%;
+    background: radial-gradient(circle at center, #050B14 0%, #020408 100%);
+    border-top: 1px solid rgba(0, 229, 255, 0.1);
+    position: relative;
+    z-index: 3;
+}
+
+/* --- The Number Counters --- */
+.impact-counters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto 5rem auto;
+}
+
+.counter-box {
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    background: rgba(10, 15, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.counter-box:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 229, 255, 0.3);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+.highlight-counter {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.8), rgba(0, 229, 255, 0.05));
+    border-color: rgba(0, 229, 255, 0.2);
+}
+
+.counter-icon { font-size: 2rem; color: var(--cyan); margin-bottom: 1.5rem; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)); }
+
+.counter-number {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #FFFFFF, var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.counter-number .suffix { font-size: 2.5rem; color: var(--cyan); -webkit-text-fill-color: var(--cyan); }
+.counter-box p { color: #94A3B8; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+
+/* --- Mini Case Studies Data --- */
+.case-metrics-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(10, 15, 26, 0.8);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.metrics-title { color: #FFFFFF; font-size: 1.5rem; margin-bottom: 2rem; text-align: center; font-weight: 800; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 1.5rem; }
+
+.metrics-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+
+.metric-card { background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.03); }
+
+.client-type { color: var(--cyan); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+
+.before-after-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 1rem 1.5rem; }
+
+.metric-side { display: flex; flex-direction: column; gap: 0.5rem; }
+.before-side .label { color: #FF5252; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; }
+.before-side .value { color: #94A3B8; font-size: 1.1rem; font-weight: 600; text-decoration: line-through; opacity: 0.7; }
+
+.after-side { text-align: right; }
+.after-side .label { color: var(--yellow-green); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; }
+.after-side .value { color: #FFFFFF; font-size: 1.3rem; font-weight: 800; text-shadow: 0 0 10px rgba(0, 229, 255, 0.3); }
+
+.metric-divider i { color: #475569; font-size: 1.2rem; }
+
+.result-bar { margin-top: 1rem; }
+.result-text { color: #E2E8F0; font-size: 0.95rem; margin-bottom: 0.8rem; }
+.result-text strong { color: var(--cyan); font-size: 1.1rem; }
+
+.progress-track { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--deep-blue), var(--cyan)); border-radius: 10px; box-shadow: 0 0 10px var(--cyan); }
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 900px) {
+    .impact-counters-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .before-after-row { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .after-side { text-align: center; }
+    .metric-divider i { transform: rotate(90deg); }
+}
+
+@media (max-width: 600px) {
+    .case-metrics-wrapper { padding: 2rem 1.5rem; }
+    .counter-number { font-size: 3.5rem; }
+    .counter-number .suffix { font-size: 2rem; }
+}
+
+
+/* =========================================
+   25. PORTFOLIO & CASE STUDIES SHOWCASE
+========================================= */
+
+.portfolio-page-main { background-color: #050B14; overflow: hidden; }
+
+.portfolio-hero { position: relative; padding: 12rem 5% 8rem 5%; text-align: center; border-bottom: 1px solid rgba(0, 229, 255, 0.1); z-index: 2; }
+
+.case-studies-section { padding: 8rem 5% 10rem 5%; background: radial-gradient(ellipse at center, #0A111F 0%, #050B14 100%); z-index: 3; position: relative; }
+
+.portfolio-container { max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; gap: 8rem; }
+
+/* --- The Master Project Card --- */
+.project-showcase-card {
+    display: flex; align-items: center; gap: 5rem;
+    position: relative;
+}
+
+.reverse-project { flex-direction: row-reverse; }
+
+/* --- 1. The Visual Side (Cinematic Images) --- */
+.project-visual {
+    flex: 1.2;
+    position: relative;
+    perspective: 1000px;
+}
+
+.visual-inner {
+    width: 100%; height: 500px; /* Cinematic widescreen ratio */
+    border-radius: 24px; overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Beautiful Placeholder Gradients (Replace with real images later via CSS background-image) */
+.project-bg-1 { background: linear-gradient(45deg, #0f2027, #203a43, #2c5364); }
+.project-bg-2 { background: linear-gradient(45deg, #141E30, #243B55); }
+.project-bg-3 { background: linear-gradient(45deg, #000000, #0f9b0f); }
+
+/* The Cyber Scanline Overlay */
+.scanline-overlay {
+    position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background-image: repeating-linear-gradient(transparent, transparent 2px, rgba(0, 229, 255, 0.05) 3px, rgba(0, 229, 255, 0.05) 3px);
+    transition: opacity 0.4s ease;
+}
+
+.project-category-badge {
+    position: absolute; top: 2rem; left: 2rem; z-index: 3;
+    background: rgba(10, 15, 26, 0.8); backdrop-filter: blur(10px);
+    border: 1px solid var(--cyan); color: var(--cyan);
+    padding: 0.5rem 1.2rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+}
+
+.project-showcase-card:hover .visual-inner {
+    transform: rotateY(-5deg) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 229, 255, 0.2), inset 0 0 40px rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.4);
+}
+.reverse-project:hover .visual-inner { transform: rotateY(5deg) scale(1.02); }
+.project-showcase-card:hover .scanline-overlay { opacity: 0; } /* Clears the image on hover */
+
+
+/* --- 2. The Text Details Side --- */
+.project-details { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+.project-header { position: relative; margin-bottom: 1.5rem; }
+.project-number {
+    position: absolute; top: -3rem; left: -2rem;
+    font-size: 6rem; font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0; pointer-events: none;
+    font-family: 'Montserrat', sans-serif;
+}
+.project-header h2 { font-size: 2.8rem; font-weight: 900; position: relative; z-index: 1; }
+
+.project-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; }
+
+.project-tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+.project-tech-stack span {
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem; border-radius: 8px; color: #E2E8F0; font-size: 0.85rem; font-weight: 600;
+}
+
+/* Beautiful Ghost Button */
+.cyber-outline-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 1rem 2rem; border-radius: 8px;
+    background: transparent; color: var(--cyan);
+    border: 2px solid var(--cyan);
+    font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+    text-decoration: none; width: max-content;
+    transition: all 0.4s ease;
+    overflow: hidden; position: relative;
+}
+.cyber-outline-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--cyan); z-index: -1;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.cyber-outline-btn:hover { color: #0F172A; box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3); }
+.cyber-outline-btn:hover::before { transform: scaleX(1); }
+
+
+/* --- 3. Mobile & Tablet Optimization --- */
+@media (max-width: 1024px) {
+    .project-showcase-card, .reverse-project { flex-direction: column; gap: 3rem; }
+    .visual-inner { height: 400px; }
+    .project-visual, .project-details { width: 100%; }
+}
+
+@media (max-width: 600px) {
+    .portfolio-container { gap: 6rem; }
+    .visual-inner { height: 300px; border-radius: 16px; }
+    .project-header h2 { font-size: 2.2rem; }
+    .project-number { font-size: 4rem; top: -2rem; left: 0; }
+    .project-description { font-size: 1rem; }
+}
+
+
+
+/* =========================================
+   25. ENTERPRISE SECURITY & SLA PROTOCOL
+========================================= */
+
+.enterprise-security-section {
+    padding: 8rem 5% 10rem 5%;
+    background: radial-gradient(ellipse at top right, rgba(0, 229, 255, 0.03) 0%, #050B14 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 3;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* --- Left: Security Features --- */
+.security-status {
+    background: rgba(255, 82, 82, 0.1) !important;
+    border-color: rgba(255, 82, 82, 0.3) !important;
+    color: #FF5252 !important;
+    animation: pulseSecurity 2s infinite alternate;
+}
+@keyframes pulseSecurity { 0% { box-shadow: 0 0 10px rgba(255,82,82,0.2); } 100% { box-shadow: 0 0 20px rgba(255,82,82,0.6); } }
+
+.security-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.sec-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.sec-icon {
+    width: 50px; height: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; display: flex; justify-content: center; align-items: center;
+    font-size: 1.3rem; color: #94A3B8; flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+.sec-feature:hover .sec-icon {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+}
+
+.sec-feature h4 { color: #E2E8F0; font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+.sec-feature p { color: #94A3B8; font-size: 0.95rem; line-height: 1.6; }
+
+
+/* --- Right: SLA Guarantee Card --- */
+.sla-guarantee-card {
+    padding: 3.5rem;
+    border-radius: 24px;
+    background: rgba(10, 15, 26, 0.8);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(0, 229, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Sweeping Radar Background Effect */
+.radar-scan-bg {
+    position: absolute; inset: -50%;
+    background: conic-gradient(from 0deg, transparent 70%, rgba(0, 229, 255, 0.1) 100%);
+    animation: radarSpin 4s linear infinite;
+    z-index: 0; pointer-events: none;
+}
+@keyframes radarSpin { 100% { transform: rotate(360deg); } }
+
+.sla-content { position: relative; z-index: 2; }
+
+.sla-icon { font-size: 3rem; color: var(--cyan); margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5)); }
+.sla-content h3 { color: #FFFFFF; font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; }
+
+.sla-divider { width: 50px; height: 3px; background: var(--brand-gradient); margin: 1.5rem auto; border-radius: 5px; }
+
+.sla-list { list-style: none; margin-bottom: 2.5rem; text-align: left; display: inline-block; }
+.sla-list li { color: #94A3B8; font-size: 1.05rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+.sla-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--cyan); }
+.sla-list strong { color: #FFFFFF; font-family: monospace; font-size: 1.1rem; }
+
+.secure-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(29, 233, 182, 0.1); border: 1px solid rgba(29, 233, 182, 0.3);
+    padding: 0.8rem 1.5rem; border-radius: 50px;
+    color: var(--yellow-green); font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+}
+
+
+/* --- Bottom: Infrastructure Scroller --- */
+.infrastructure-partners { margin-top: 8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 4rem; text-align: center; }
+
+.partners-label { color: #64748B; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 2.5rem; }
+
+.partners-scroller {
+    overflow: hidden; position: relative; width: 100%;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.partners-track {
+    display: flex; gap: 4rem; align-items: center; white-space: nowrap; width: max-content;
+    animation: scrollPartners 30s linear infinite;
+}
+
+.partners-track span {
+    color: #475569; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 12px;
+    transition: color 0.4s ease; cursor: default;
+}
+.partners-track span:hover { color: #FFFFFF; }
+.partners-track i { font-size: 2rem; color: #64748B; transition: color 0.4s ease; }
+.partners-track span:hover i { color: var(--cyan); }
+
+@keyframes scrollPartners { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 1024px) {
+    .security-grid { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+    .sec-feature { flex-direction: column; align-items: center; text-align: center; }
+    .sla-list { text-align: center; }
+    .sla-list li { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    .enterprise-security-section { padding: 6rem 5% 6rem 5%; }
+    .sla-guarantee-card { padding: 2rem 1.5rem; }
+    .infrastructure-partners { margin-top: 5rem; padding-top: 3rem; }
+    .partners-track span { font-size: 1.1rem; }
+    .partners-track i { font-size: 1.5rem; }
+}
